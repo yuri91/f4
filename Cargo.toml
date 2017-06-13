@@ -1,0 +1,17 @@
+[package]
+name = "f4"
+version = "0.1.0"
+authors = ["Yuri Iozzelli <y.iozzelli@gmail.com>"]
+categories = ["asynchronous", "embedded", "hardware-support", "no-std"]
+description = "Board Support Crate for the STM32F4DISCOVERY"
+documentation = "https://docs.rs/f4"
+keywords = ["arm", "cortex-m", "stm32"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yuri91/f4"
+
+[dependencies]
+stm32f40x = "0.1.5"
+
+[dependencies.cast]
+default-features = false
+version = "0.2.0"
