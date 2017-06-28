@@ -1,6 +1,6 @@
 //! User LEDs
 
-use stm32f40x::{GPIOD, Gpiod, Rcc};
+use stm32f40x::{GPIOD, RCC};
 
 /// All the user LEDs
 pub static LEDS: [Led; 4] = [
@@ -30,25 +30,21 @@ impl Led {
 }
 
 /// Initializes all the user LEDs
-pub fn init(gpiod: &Gpiod, rcc: &Rcc) {
+pub fn init(gpiod: &GPIOD, rcc: &RCC) {
     // Power up peripherals
-    rcc.ahb1enr.modify(|_,w| w.gpioden().enabled());
+    rcc.ahb1enr.modify(|_, w| w.gpioden().enabled());
 
     // Configure pins 8-15 as outputs
-    gpiod
-        .moder
-        .modify(
-            |_, w| {
-                w.moder12()
-                    .output()
-                    .moder13()
-                    .output()
-                    .moder14()
-                    .output()
-                    .moder15()
-                    .output()
-            },
-        );
+    gpiod.moder.modify(|_, w| {
+        w.moder12()
+            .output()
+            .moder13()
+            .output()
+            .moder14()
+            .output()
+            .moder15()
+            .output()
+    });
 }
 
 /// LED4, Orange
